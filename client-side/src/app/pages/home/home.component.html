@@ -1,0 +1,51 @@
+<div class="container lepolepo" *ngIf = "aba == 0">
+      
+    <form #f="ngForm">
+        <h3>Dados para Sistema</h3>
+        <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" [(ngModel)] = "user.name"  class="form-control" name = "nomeuser" id="name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="age">Idade</label>
+        <input type="number" [(ngModel)] = "user.age" class="form-control" name = "ageuser" id="age">
+      </div>
+       
+      <div class="form-group">
+        <label >Genero(s) de Filme(s) preferido(s)</label>
+        <br>
+        <p-multiSelect [options]="genders" [(ngModel)]="selectedGenders" name = "gendermovieuser" [panelStyle]="{minWidth:'20em'}"></p-multiSelect>
+      </div>
+
+      <div class="form-group">
+          <label >Profissão</label><br>
+          <p-dropdown [options]="ocupations" [(ngModel)]="selectedOcupation"  name = "ocupationuser" placeholder="Selecione uma Profissão" optionLabel="label" [showClear]="true"></p-dropdown>
+      </div>
+      <br>
+      <div class="form-group">
+      <button type="button" *ngIf = "!avancar" (click) = "saveUser()" class="btn .btn-group-justified btn-primary">Salvar</button> 
+      <button *ngIf = "avancar" type="button" (click) = "next()" class="btn .btn-group-justified btn-success">Próximo</button> 
+    </div>
+    </form>
+</div>
+
+<!-- Área de Escolha dos Filmes -->
+<div class="divdocao">
+<h2>Baseado em Conteudo</h2>
+<p-carousel headerText="Movies" [value]="movies" *ngIf = "aba == 1">
+    <ng-template let-movie pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                 Titulo:&nbsp;
+                <div class="ui-grid-col-6">{{movie.title}}</div>
+            </div> <br>
+            <div class="ui-grid-row">
+                Generos:&nbsp;
+                <div class="ui-grid-col-6">{{movie.genres}}</div>
+            </div>
+        </div>
+        &nbsp;
+    </ng-template>
+</p-carousel>
+</div>
